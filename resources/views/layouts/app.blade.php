@@ -41,10 +41,10 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('books.index') }}">{{ __('All Books') }}</a>
+                        <a class="nav-link" href="{{ url('/books') }}">{{ __('All Books') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('books.create') }}">{{ __('Add Book') }}</a>
+                        <a class="nav-link" href="{{ url('/books/create') }}">{{ __('Add Book') }}</a>
                     </li>
                     <!-- Authentication Links -->
                     @guest

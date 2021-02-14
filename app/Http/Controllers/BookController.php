@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,18 +38,37 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $slug = str_replace(' ', '-', $request->title);
+        $cover = $request->file('cover')->store('covers');
+
+        $book = new Book();
+
+        $book->title = request('title');
+        $book->description = request('description');
+        $book->cover = $cover;
+
+        if($request->genre) {
+            $book->genres()->attach($request->genre);
+        }
+        if($request->author) {
+            $book->authors()->attach($request->author);
+        }
+
+
+        $book->save();
+
+        return redirect('books');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Book $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+       return view('books.show', compact('book'));
     }
 
     /**

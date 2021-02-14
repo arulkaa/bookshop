@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('books', [BookController::class, 'index']);
+//Route::post('books', [BookController::class, 'store'])->name('books.store');
+//Route::get('books/create', [BookController::class, 'create']);
+//Route::get('books/{book}', [BookController::class, 'show']);
+
 Route::resource('books', BookController::class);
 
 Auth::routes();
